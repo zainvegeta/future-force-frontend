@@ -41,6 +41,12 @@
                   </h4>
                 </a>
                 <h6>{{ job.attributes.employer }}</h6>
+                <h6>
+                  Vacancies : {{job.attributes.vacancies}} Nos.                  
+                </h6>
+                <h6>
+                  Vacancies Remaining : {{job.attributes.vacancies-job.attributes.vacancies_filled}} Nos.
+                </h6>
               </div>
               <ul class="btns">
                 <li><a href="#">Apply</a></li>
@@ -49,7 +55,7 @@
             <div [innerHtml]="job.attributes.description | sanitizeHtml"></div>
           </div>
         </div>
-        <div class="single-post job-details">
+        <div class="single-post job-details" *ngIf="job.attributes.detail">
           <div [innerHtml]="job.attributes.detail | sanitizeHtml"></div>
         </div>
       </div>

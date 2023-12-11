@@ -168,15 +168,15 @@
                 <a href="job-detail/{{job.id}}">
                   <h4>
                     {{job.attributes.title}}
-                  </h4>
-                  <h6 class="text-dark font-weight-bold">
-                    Vacancies : {{job.attributes.vacancies}} Nos.                  
-                  </h6>
-                  <h6 class="text-dark font-weight-bold">
-                    Vacancies Remaining : {{job.attributes.vacancies-job.attributes.vacancies_filled}} Nos.
-                  </h6>
+                  </h4>                
                 </a>
                 <h6>{{job.attributes.employer}}</h6>
+                <h6>
+                  Vacancies : {{job.attributes.vacancies}} Nos.                  
+                </h6>
+                <h6>
+                  Vacancies Remaining : {{job.attributes.vacancies-job.attributes.vacancies_filled}} Nos.
+                </h6>
               </div>
               <ul class="btns">
                 <li><a href="job-detail/{{job.id}}">Details</a></li>
