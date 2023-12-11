@@ -1,0 +1,294 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div
+      class="row fullscreen d-flex align-items-center justify-content-center"
+    >
+      <div class="banner-content col-lg-12">
+        <h1 class="text-white">
+          Discover your ideal career destination with us
+        </h1>
+        <form action="search.html" class="serach-form-area">
+          <div class="row justify-content-center form-wrap">
+            <div class="col-lg-4 form-cols">
+              <input
+                type="text"
+                class="form-control"
+                name="search"
+                placeholder="what are you looging for?"
+              />
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select" id="default-selects">
+                <select>
+                  <option value="1">Select country</option>
+                  <option
+                    *ngFor="let country of countries"
+                    [value]="country.id"
+                  >
+                    {{ country.attributes.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select" id="default-selects2">
+                <select>
+                  <option value="1">All Category</option>
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category.id"
+                  >
+                    {{ category.attributes.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2 form-cols">
+              <button type="button" class="btn btn-theme">
+                <span class="lnr lnr-magnifier"></span> Search
+              </button>
+            </div>
+          </div>
+        </form>
+        <p class="text-white">
+          <span>Search by tags:</span> Technology, Business, Consulting, IT
+          Company, Design, Development
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start features Area -->
+<section class="features-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="single-feature h-100">
+          <h4>Explore</h4>
+          <p class="px-2">
+            Dive into a vast array of opportunities tailored to your skills and
+            aspirations. Explore not just jobs, but potential growth avenues
+            that align with your professional journey.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="single-feature h-100">
+          <h4>Apply</h4>
+          <p class="px-2">
+            With just a few clicks, take the first step toward securing your
+            dream job. We prioritize efficiency to make the application process
+            straightforward and accessible.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="single-feature h-100">
+          <h4>Stay Informed</h4>
+          <p class="px-2">
+            Our notification system ensures you stay informed, enabling informed
+            decisions and keeping you ahead in your career.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End features Area -->
+
+<!-- Start popular-post Area -->
+<section class="popular-post-area pt-100" *ngIf="featuredJobs?.length > 0">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="active-popular-post-carusel">
+        <div class="single-popular-post d-flex flex-row" *ngFor="let featuredJob of featuredJobs">
+          <div class="thumb col-md-3">
+            <a class="btns text-uppercase" href="#">Details</a>
+          </div>
+          <div class="details col-md-9">
+            <a href="#"><h4>{{featuredJob.attributes.title}}</h4></a>
+            <h6>{{featuredJob.attributes.employer}}</h6>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End popular-post Area -->
+
+<!-- Start feature-cat Area -->
+<section class="feature-cat-area pt-100" id="category" *ngIf="featuredCategories?.length > 0">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-60 col-lg-10">
+        <div class="title text-center">
+          <h1 class="mb-10">Featured Job Categories</h1>
+          <p>Who are in extremely love with eco friendly system.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let featuredCategory of featuredCategories">
+        <div class="single-fcat">
+          <a href="category.html">
+            <img [src]="featuredCategory.attributes.image?.data?.attributes.url" alt="" />
+          </a>
+          <p>{{featuredCategory.attributes.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End feature-cat Area -->
+
+<!-- Start post Area -->
+<section class="post-area section-gap" *ngIf="jobs?.length > 0">
+  <div class="container">
+    <div class="row justify-content-center d-flex">
+      <div class="col-lg-8 post-list">
+        <div class="single-post row" *ngFor="let job of jobs">
+          <div class="thumb col-md-3">
+            <ul class="tags">
+              <li *ngFor="let category of job.attributes.categories?.data">
+                <a href="javascript:void(0)"> {{category.attributes.name}} </a>
+              </li>
+              <li *ngFor="let country of job.attributes.countries?.data">
+                <a href="javascript:void(0)">{{country.attributes.name}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="details col-md-9">
+            <div class="title d-flex flex-row justify-content-between">
+              <div class="titles">
+                <a href="job-detail/{{job.id}}">
+                  <h4>
+                    {{job.attributes.title}}
+                  </h4>
+                  <h6 class="text-dark font-weight-bold">
+                    Vacancies : {{job.attributes.vacancies}} Nos.                  
+                  </h6>
+                  <h6 class="text-dark font-weight-bold">
+                    Vacancies Remaining : {{job.attributes.vacancies-job.attributes.vacancies_filled}} Nos.
+                  </h6>
+                </a>
+                <h6>{{job.attributes.employer}}</h6>
+              </div>
+              <ul class="btns">
+                <li><a href="job-detail/{{job.id}}">Details</a></li>
+              </ul>
+            </div>
+            <div [innerHtml]='job.attributes.description | sanitizeHtml'>
+            </div>            
+          </div>
+        </div>
+        <div
+          class="text-uppercase loadmore-btn mx-auto d-block"
+          (click)="loadMoreJobs();"
+          >Load More job Posts</div>
+      </div>
+
+      <div class="col-lg-4 sidebar" *ngIf="countries?.length > 0">
+        <div class="single-slidebar">
+          <h4>Jobs by Country</h4>
+          <ul class="cat-list">
+            <li *ngFor="let country of countries">
+              <a class="justify-content-between d-flex" href="category.html"
+                ><p>{{country.attributes.name}}</p>
+                <span>{{country.attributes.jobs.data.attributes.count}}</span></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="single-slidebar">
+          <h4>Top rated job posts</h4>
+          <div class="active-relatedjob-carusel">
+            <div class="single-rated" *ngFor="let featuredJob of featuredJobs">
+              <a href="single.html"><h4>{{featuredJob.attributes.title}}</h4></a>
+              <h6>{{featuredJob.attributes.employer}}</h6>
+              <div [innerHtml]='featuredJob.attributes.description | sanitizeHtml'>
+              </div>
+              <a href="#" class="btns text-uppercase">Apply job</a>
+            </div>
+            <div class="single-rated">
+              <img class="img-fluid" src="img/r1.jpg" alt="" />
+              <a href="single.html"><h4>Creative Art Designer</h4></a>
+              <h6>Premium Labels Limited</h6>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod temporinc ididunt ut dolore magna aliqua.
+              </p>
+              <h5>Job Nature: Full time</h5>
+              <p class="address">
+                <span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi
+                Dhaka
+              </p>
+              <p class="address">
+                <span class="lnr lnr-database"></span> 15k - 25k
+              </p>
+              <a href="#" class="btns text-uppercase">Apply job</a>
+            </div>
+            <div class="single-rated">
+              <img class="img-fluid" src="img/r1.jpg" alt="" />
+              <a href="single.html"><h4>Creative Art Designer</h4></a>
+              <h6>Premium Labels Limited</h6>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod temporinc ididunt ut dolore magna aliqua.
+              </p>
+              <h5>Job Nature: Full time</h5>
+              <p class="address">
+                <span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi
+                Dhaka
+              </p>
+              <p class="address">
+                <span class="lnr lnr-database"></span> 15k - 25k
+              </p>
+              <a href="#" class="btns text-uppercase">Apply job</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="single-slidebar" *ngIf="categories?.length > 0">
+          <h4>Jobs by Category</h4>
+          <ul class="cat-list">
+            <li *ngFor="let category of categories">
+              <a class="justify-content-between d-flex" href="category.html"
+                ><p>{{category.attributes.name}}</p>
+                <span>{{category.attributes.jobs.data.attributes.count}}</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End post Area -->
+
+<!-- Start callto-action Area -->
+<section class="callto-action-area section-gap" id="join">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content col-lg-9">
+        <div class="title text-center">
+          <h1 class="mb-10 text-white">
+            Join us today and unlock a world of possibilities
+          </h1>
+          <p class="text-white">
+            Benefit from personalized services designed to meet your unique
+            needs, whether you're a candidate seeking new opportunities or an
+            employer looking for top talent.
+          </p>
+          <a class="btn btn-theme" href="contact-us">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End calto-action Area -->

@@ -1,0 +1,230 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">Post Your Resume</h1>
+        <p class="text-white link-nav">
+          <a href="/">Home </a>
+          <span class="lnr lnr-arrow-right"></span>
+          <a href="post-resume">Post Your Resume</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start resume-page Area -->
+<section class="contact-page-area section-gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center pb-20">Post Your Resume</h1>
+        <form
+          class="form-area"
+          id="postResumeForm"
+          [formGroup]="resumeForm"
+          (ngSubmit)="onClickSubmit(resumeForm.value)"
+          novalidate
+          class="contact-form text-right"
+        >
+          <div class="row">
+            <div class="col-lg-12 form-group">
+              <input
+                name="name"
+                placeholder="Enter your full name"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Enter your full name'"
+                class="single-input mb-20 form-control"
+                formControlName="name"
+                type="text"
+              />
+              <div
+                *ngIf="
+                  name?.invalid &&
+                  (name?.dirty || name?.touched) &&
+                  showFormErrors
+                "
+                class="mt-20 alert-msg text-left"
+              >
+                <span
+                  *ngIf="name?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Full name is required.
+                </span>
+              </div>
+
+              <input
+                name="email"
+                placeholder="Enter email address"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Enter email address'"
+                class="single-input mb-20 form-control"
+                formControlName="email"
+                type="email"
+              />
+              <div
+                *ngIf="
+                  email?.invalid &&
+                  (email?.dirty || email?.touched) &&
+                  showFormErrors
+                "
+                class="mt-20 alert-msg text-left"
+              >
+                <span
+                  *ngIf="email?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Email is required.
+                </span>
+                <span
+                  *ngIf="email?.errors?.['email']"
+                  class="error text-danger"
+                >
+                  Invalid email.
+                </span>
+              </div>
+              <input
+                name="phone"
+                placeholder="Enter phone number"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Enter phone number'"
+                class="single-input mb-20 form-control"
+                formControlName="phone"
+                type="text"
+              />
+              <div
+                *ngIf="
+                  phone?.invalid &&
+                  (phone?.dirty || phone?.touched) &&
+                  showFormErrors
+                "
+                class="mt-20 alert-msg text-left"
+              >
+                <span
+                  *ngIf="phone?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Phone is required.
+                </span>
+                <span
+                  *ngIf="phone?.errors?.['pattern'] || phone?.errors?.['maxlength'] || phone?.errors?.['minlength']"
+                  class="error text-danger"
+                >
+                  Invalid phone number
+                </span>
+              </div>
+
+              <input
+                name="position"
+                placeholder="Position applied for"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Position applied for'"
+                class="single-input mb-20 form-control"
+                formControlName="position"
+                type="text"
+              />
+              <div
+                *ngIf="
+                  position?.invalid &&
+                  (position?.dirty || position?.touched) &&
+                  showFormErrors
+                "
+                class="mt-20 alert-msg text-left"
+              >
+                <span
+                  *ngIf="position?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Position is required.
+                </span>
+              </div>
+              <div class="text-left py-2">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    formControlName="gender"
+                  />
+                  <label class="form-check-label"> Male </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    formControlName="gender"
+                  />
+                  <label class="form-check-label"> Female </label>
+                </div>
+              </div>
+
+              <div class="py-3">
+                <p-fileUpload
+                  #fileInput
+                  mode="advanced"
+                  [auto]="true"
+                  [showCancelButton]="false"
+                  [showUploadButton]="false"
+                  chooseLabel="Choose"
+                  [maxFileSize]="5000000"
+                  [customUpload]="true"
+                  (uploadHandler)="onUpload($event)"
+                  class="text-left"
+                >
+                  <ng-template pTemplate="toolbar">
+                    <div class="py-3 text-muted">
+                      Upload your resume less than 5MB in size
+                    </div>
+                  </ng-template>
+                </p-fileUpload>
+
+                <div
+                  *ngIf="showFileRequired"
+                  class="mt-20 alert-msg text-left mt-3"
+                >
+                  <span class="error text-danger"> File is required. </span>
+                </div>
+              </div>
+              <textarea
+                style="height: 190px"
+                class="single-textarea mt-15 mb-20 form-control"
+                name="message"
+                placeholder="Messege"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Messege'"
+                formControlName="message"
+              ></textarea>
+              <div
+                *ngIf="
+                  message?.invalid &&
+                  (message?.dirty || message?.touched) &&
+                  showFormErrors
+                "
+                class="mt-20 alert-msg text-left"
+              >
+                <span
+                  *ngIf="message?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Message is required.
+                </span>
+              </div>
+
+              <button class="primary-btn mt-20 text-white" style="float: right">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End resume-page Area -->

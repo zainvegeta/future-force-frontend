@@ -1,0 +1,59 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">Job Details</h1>
+        <p class="text-white link-nav">
+          <a href="/">Home </a>
+          <span class="lnr lnr-arrow-right"></span>
+          <a href="#"> Job Details</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start post Area -->
+<section class="post-area section-gap">
+  <div class="container">
+    <div class="row justify-content-center d-flex">
+      <div class="col-lg-10 post-list" *ngIf="job">
+        <div class="single-post row">
+          <div class="thumb col-md-3">
+            <ul class="tags">
+              <li *ngFor="let category of job.attributes.categories?.data">
+                <a href="javascript:void(0)"> {{category.attributes.name}} </a>
+              </li>
+              <li *ngFor="let country of job.attributes.countries?.data">
+                <a href="javascript:void(0)">{{country.attributes.name}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="details col-md-9">
+            <div class="title d-flex flex-row justify-content-between">
+              <div class="titles">
+                <a href="javascript:void(0)">
+                  <h4>
+                    {{ job.attributes.title }}
+                  </h4>
+                </a>
+                <h6>{{ job.attributes.employer }}</h6>
+              </div>
+              <ul class="btns">
+                <li><a href="#">Apply</a></li>
+              </ul>
+            </div>
+            <div [innerHtml]="job.attributes.description | sanitizeHtml"></div>
+          </div>
+        </div>
+        <div class="single-post job-details">
+          <div [innerHtml]="job.attributes.detail | sanitizeHtml"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End post Area -->
