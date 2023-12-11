@@ -259,6 +259,14 @@ input[type='radio']{
 .default-select .nice-select .list .option:hover {
   color: #97ca4c;
 }
+.single-fcat:hover {
+  border: 1px solid #97ca4c;
+}
+
+.single-popular-post .btns:hover {
+  background-color: #1e2235;
+  color: #97ca4c;
+}
 
 /* input[type='radio']{
   width: 20px;
