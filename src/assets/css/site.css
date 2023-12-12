@@ -288,6 +288,16 @@ input[type='radio']{
   padding-right: 15px;
 }
 
+a {
+  color: #97ca4c;
+}
+a:hover {
+  color: #769b3e;
+}
+a:focus {
+  color: #769b3e;
+}
+
 
 @media (min-width: 360px) {
   .banner-content {

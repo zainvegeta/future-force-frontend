@@ -3798,7 +3798,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 ################
 */
 .blog-banner-area {
-  background: url(../img/elements/blog/blog-banner.jpg) center;
+  background: url('../img/elements/blog/blog-banner.jpg') center;
   background-size: cover;
 }
 

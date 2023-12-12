@@ -7,10 +7,11 @@
         <h1 class="text-white">
           Discover your ideal career destination with us
         </h1>
-        <form action="search.html" class="serach-form-area">
+        <form class="serach-form-area" (ngSubmit)="onSearchSubmit()">
           <div class="row justify-content-center form-wrap">
             <div class="col-lg-4 form-cols">
               <input
+                id="query"
                 type="text"
                 class="form-control"
                 name="search"
@@ -19,8 +20,8 @@
             </div>
             <div class="col-lg-3 form-cols">
               <div class="default-select" id="default-selects">
-                <select>
-                  <option value="1">Select country</option>
+                <select id="country">
+                  <option value="0">Select country</option>
                   <option
                     *ngFor="let country of countries"
                     [value]="country.id"
@@ -32,8 +33,8 @@
             </div>
             <div class="col-lg-3 form-cols">
               <div class="default-select" id="default-selects2">
-                <select>
-                  <option value="1">All Category</option>
+                <select id="category">
+                  <option value="0">All Category</option>
                   <option
                     *ngFor="let category of categories"
                     [value]="category.id"
@@ -44,15 +45,15 @@
               </div>
             </div>
             <div class="col-lg-2 form-cols">
-              <button type="button" class="btn btn-theme">
+              <button type="submit" class="btn btn-theme">
                 <span class="lnr lnr-magnifier"></span> Search
               </button>
             </div>
           </div>
         </form>
         <p class="text-white">
-          <span>Search by tags:</span> Technology, Business, Consulting, IT
-          Company, Design, Development
+          <span>Search by tags:</span> Designer, Engineer, Developer, 
+          Welder, Nurse, Accountant
         </p>
       </div>
     </div>
@@ -133,7 +134,7 @@
     <div class="row d-flex justify-content-center">
       <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let featuredCategory of featuredCategories">
         <div class="single-fcat">
-          <a href="category.html">
+          <a href="jobs?categoryId={{featuredCategory.id}}">
             <img [src]="featuredCategory.attributes.image?.data?.attributes.url" alt="" />
           </a>
           <p>{{featuredCategory.attributes.name}}</p>
@@ -195,7 +196,7 @@
           <h4>Jobs by Country</h4>
           <ul class="cat-list">
             <li *ngFor="let country of countries">
-              <a class="justify-content-between d-flex" href="category.html"
+              <a class="justify-content-between d-flex" href="jobs?countryId={{country.id}}"
                 ><p>{{country.attributes.name}}</p>
                 <span>{{country.attributes.jobs.data.attributes.count}}</span></a
               >
@@ -220,7 +221,7 @@
           <h4>Jobs by Category</h4>
           <ul class="cat-list">
             <li *ngFor="let category of categories">
-              <a class="justify-content-between d-flex" href="category.html"
+              <a class="justify-content-between d-flex" href="jobs?categoryId={{category.id}}"
                 ><p>{{category.attributes.name}}</p>
                 <span>{{category.attributes.jobs.data.attributes.count}}</span></a
               >

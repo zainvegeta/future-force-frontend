@@ -78,7 +78,7 @@
 				</div>
 				<div class="table-row" *ngFor="let job of jobs ; index as i">
 					<div class="serial">{{i+1}}</div>
-					<div class="country">
+					<div class="country d-block">
 						<span *ngFor="let country of job.attributes.countries?.data">
 							{{country.attributes.name}}
 						</span>
