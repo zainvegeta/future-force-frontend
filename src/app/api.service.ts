@@ -42,7 +42,7 @@ export class ApiService {
         .set('pagination[pageSize]', pageSize)
         .set('sort[0]', 'id:desc')
         .set('fields[0]', 'name')
-        .set('populate[jobs][count]', 'true')
+        .set('populate[jobs][count]', 'true'),
     };
     return this.http
       .get('api/categories', options)
@@ -57,7 +57,7 @@ export class ApiService {
         .set('sort[0]', 'id:desc')
         .set('fields[0]', 'name')
         .set('populate', 'image')
-        .set('filters[featured][=]','true')
+        .set('filters[featured][=]', 'true'),
     };
     return this.http
       .get('api/categories', options)
@@ -71,21 +71,39 @@ export class ApiService {
         .set('pagination[pageSize]', pageSize)
         .set('sort[0]', 'id:desc')
         .set('fields[0]', 'name')
-        .set('populate[jobs][count]', 'true')
-        
+        .set('populate[jobs][count]', 'true'),
     };
     return this.http
       .get('api/countries', options)
       .pipe(catchError(this.handleError));
   }
 
-  getJobs(page: number = 1, pageSize: number = 100): Observable<any> {
+  getJobs(
+    page: number = 1,
+    pageSize: number = 100,
+    countryId: number = 0,
+    categoryId: number = 0,
+    query:string=''
+  ): Observable<any> {
+
+    let params = new HttpParams()
+    .set('pagination[page]', page)
+    .set('pagination[pageSize]', pageSize)
+    .set('sort[0]', 'id:desc')
+    .set('populate', '*');
+
+    if (countryId > 0) {
+      params=params.set('filters[$and][0][countries][id][$eq]', countryId)
+    }
+    if (categoryId > 0) {
+      params=params.set('filters[$and][1][categories][id][$eq]', categoryId)
+    }
+    if(query!=''){
+      params=params.set('filters[$and][2][title][$containsi]', query)
+    }
+  
     const options = {
-      params: new HttpParams()
-        .set('pagination[page]', page)
-        .set('pagination[pageSize]', pageSize)
-        .set('sort[0]', 'id:desc')
-        .set('populate', '*')
+      params: params
     };
     return this.http
       .get('api/jobs', options)
@@ -98,7 +116,7 @@ export class ApiService {
         .set('pagination[page]', 1)
         .set('pagination[pageSize]', 6)
         .set('sort[0]', 'id:desc')
-        .set('filters[featured][=]','true')
+        .set('filters[featured][=]', 'true'),
     };
     return this.http
       .get('api/jobs', options)
@@ -107,8 +125,7 @@ export class ApiService {
 
   getJob(id: number = 1): Observable<any> {
     const options = {
-      params: new HttpParams()
-        .set('populate', '*')
+      params: new HttpParams().set('populate', '*'),
     };
     return this.http
       .get(`api/jobs/${id}`, options)

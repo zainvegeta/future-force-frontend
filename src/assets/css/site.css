@@ -8,6 +8,7 @@
   padding: 20px 0;
   margin: 40px 0;
 }
+
 .popular-post-area .owl-dot.active {
   background: #97ca4c;
 }
@@ -26,6 +27,7 @@
 }
 .post-list .loadmore-btn {
   background-color: #97ca4c;
+  cursor: pointer;
 }
 .post-list .single-post .btns li:hover {
   background-color: #97ca4c;
@@ -148,6 +150,7 @@ button:disabled {
   color: #97ca4c;
 }
 
+
 .footer-text a, .footer-text i {
   color: #97ca4c;
 }
@@ -267,18 +270,23 @@ input[type='radio']{
   background-color: #1e2235;
   color: #97ca4c;
 }
+.progress-table .serial {
+  width: 6%;
+  padding-left: 15px;
+}
 
-/* input[type='radio']{
-  width: 20px;
-  height: 20px;
-  background-color: #f9f9ff;
-  accent-color: #97ca4c; 
-} */
+.progress-table .country {
+  width: 12%;
+}
 
-/* input[type='radio']:checked  {
-  border-radius: 15px;
-  background-color: #f07f09;
-} */
+.progress-table .visit {
+  width: 18%;
+}
+
+.progress-table .percentage {
+  width: 10%;
+  padding-right: 15px;
+}
 
 
 @media (min-width: 360px) {
@@ -286,3 +294,8 @@ input[type='radio']{
     margin-top: -20px;
   }
 }
+
+
+
+
+

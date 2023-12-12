@@ -27,3 +27,4 @@ export class SanitizeHtmlPipe implements PipeTransform {
     return this._sanitizer.bypassSecurityTrustHtml(v);
   }
 }
+
