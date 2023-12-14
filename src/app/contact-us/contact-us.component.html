@@ -219,6 +219,9 @@
                 Message is required.
                 </span>
               </div>
+              <div style="float: left;" *ngIf=loading>
+                <p-progressSpinner animationDuration=".5s"></p-progressSpinner>
+              </div>
               <button
                 class="primary-btn mt-20 text-white"
                 style="float: right"

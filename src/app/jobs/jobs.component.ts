@@ -3,11 +3,12 @@ import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 declare var $: any;
 @Component({
   selector: 'app-jobs',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,ProgressSpinnerModule],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.css',
 })
@@ -15,8 +16,10 @@ export class JobsComponent implements OnInit {
   categories: any = [];
   countries: any = [];
   jobs: any = [];
+  loading:boolean=false;
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
   ngOnInit(): void {
+    this.loading=true;
     this.apiService.getCategories().subscribe((response) => {
       this.categories = response.data;
     });
@@ -34,11 +37,13 @@ export class JobsComponent implements OnInit {
         .getJobs(1, 25, countryId ?? 0, categoryId ?? 0, query ?? '')
         .subscribe((response) => {
           this.jobs = response.data;
+          this.loading=false;
         });
     });
   }
 
   onSearchSubmit() {
+    this.loading=true;
     var query = $('#query').val();
     var countryId = $('#country').val() as number;
     var categoryId = $('#category').val() as number;
@@ -46,6 +51,7 @@ export class JobsComponent implements OnInit {
       .getJobs(1, 25, countryId, categoryId, query)
       .subscribe((response) => {
         this.jobs = response.data;
+        this.loading=false;
       });
   }
 }

@@ -62,7 +62,10 @@
 <!-- Start post Area -->
 <section class="post-area section-gap">
   <div class="container">
-    <div class="row justify-content-center d-flex">
+    <div class="text-center" *ngIf=loading>
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+    <div class="row justify-content-center d-flex" *ngIf=!loading>
       <div class="col-lg-10 post-list">
         <h5 class="mb-30">Pease click on "Details" to apply</h5>
 		<div class="progress-table-wrap">

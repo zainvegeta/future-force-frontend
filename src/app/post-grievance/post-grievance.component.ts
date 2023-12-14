@@ -9,17 +9,18 @@ import {
 import { ApiService } from '../api.service';
 import { MessageService } from 'primeng/api';
 import { Helpers } from '../helpers';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 @Component({
   selector: 'app-post-grievance',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,ProgressSpinnerModule],
   templateUrl: './post-grievance.component.html',
   styleUrl: './post-grievance.component.css',
 })
 export class PostGrievanceComponent implements OnInit {
   grievanceForm: FormGroup;
   showFormErrors: boolean;
+  loading:boolean=false;
   constructor(
     private apiService: ApiService,
     private messageService: MessageService
@@ -62,6 +63,7 @@ export class PostGrievanceComponent implements OnInit {
   onClickSubmit(data: any) {
     Helpers.validateAllFormFields(this.grievanceForm);
     if (this.grievanceForm.valid) {
+      this.loading=true;
       this.apiService.postGrievance(data).subscribe((response) => {
         this.messageService.add({
           severity: 'success',
@@ -69,6 +71,7 @@ export class PostGrievanceComponent implements OnInit {
           detail: 'Your suggestion / grievance was submitted successfully',
         });
         this.grievanceForm.reset();
+        this.loading=false;
       });
     } else {
       this.showFormErrors = true;

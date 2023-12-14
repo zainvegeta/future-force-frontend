@@ -6,7 +6,7 @@
   background-color: #9a9a9a;
   border: 1px solid #d4d4d4;
   padding: 20px 0;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 .popular-post-area .owl-dot.active {
@@ -298,6 +298,9 @@ a:focus {
   color: #769b3e;
 }
 
+.progress-table .table-row {
+  border-bottom: 8px solid #fff;
+}
 
 @media (min-width: 360px) {
   .banner-content {

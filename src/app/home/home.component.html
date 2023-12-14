@@ -185,6 +185,9 @@
             </div>            
           </div>
         </div>
+        <div class="text-center" *ngIf=loading>
+          <p-progressSpinner></p-progressSpinner>
+        </div>
         <div
           class="text-uppercase loadmore-btn mx-auto d-block"
           (click)="loadMoreJobs();"

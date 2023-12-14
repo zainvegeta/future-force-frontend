@@ -10,17 +10,19 @@ import { ApiService } from '../api.service';
 import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { Helpers } from '../helpers';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,ProgressSpinnerModule],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })
 export class ContactUsComponent implements OnInit {
   contactForm: FormGroup;
   showFormErrors: boolean;
+  loading:boolean=false;
   constructor(
     private apiService: ApiService,
     private messageService: MessageService
@@ -59,6 +61,7 @@ export class ContactUsComponent implements OnInit {
   onClickSubmit(data: any) {
     Helpers.validateAllFormFields(this.contactForm);
     if (this.contactForm.valid) {
+      this.loading=true;
       this.apiService.postMessage(data).subscribe((response) => {
         this.messageService.add({
           severity: 'success',
@@ -66,6 +69,7 @@ export class ContactUsComponent implements OnInit {
           detail: 'Your message was send successfully',
         });
         this.contactForm.reset();
+        this.loading=false;
       });
     } else {
       this.showFormErrors = true;

@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { SanitizeHtmlPipe } from '../helpers';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 import qs from 'qs';
 declare var $: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SanitizeHtmlPipe, FormsModule],
+  imports: [CommonModule, SanitizeHtmlPipe, FormsModule,ProgressSpinnerModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   jobPage: number = 1;
   jobPageSize = 5;
   featuredJobs: any = [];
-
+  loading:boolean=false;
   constructor(private apiService: ApiService, private router: Router) {}
   ngOnInit(): void {
     this.apiService.getCategories().subscribe((response) => {
@@ -44,11 +45,13 @@ export class HomeComponent implements OnInit {
   }
 
   loadMoreJobs(): void {
+    this.loading=true;
     this.jobPage = this.jobPage + 1;
     this.apiService
       .getJobs(this.jobPage, this.jobPageSize)
       .subscribe((response) => {
         this.jobs = [...this.jobs, ...response.data];
+        this.loading=false;
       });
   }
 

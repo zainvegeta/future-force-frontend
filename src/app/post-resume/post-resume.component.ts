@@ -11,6 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FileUpload, FileUploadHandlerEvent, FileUploadModule } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { Helpers } from '../helpers';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 @Component({
   selector: 'app-post-resume',
   standalone: true,
@@ -19,6 +20,7 @@ import { Helpers } from '../helpers';
     ReactiveFormsModule,
     DropdownModule,
     FileUploadModule,
+    ProgressSpinnerModule
   ],
 
   templateUrl: './post-resume.component.html',
@@ -30,6 +32,7 @@ export class PostResumeComponent implements OnInit {
   formData: FormData;
   showFileRequired: boolean;
   showFormErrors: boolean;
+  loading:boolean=false;
   @ViewChild('fileInput') fileInput: FileUpload;
   constructor(
     private apiService: ApiService,
@@ -81,6 +84,7 @@ export class PostResumeComponent implements OnInit {
       this.showFormErrors = true;
       this.showFileRequired = true;
     } else {
+      this.loading=true;
       this.apiService.postResume(data).subscribe((response) => {
         this.formData.append('refId', response.data.id);
         this.formData.append('ref', 'api::resume.resume');
@@ -94,7 +98,7 @@ export class PostResumeComponent implements OnInit {
           });
           this.resumeForm.reset();
           this.fileInput.clear();
-
+          this.loading=false;
         });
       });
     }
