@@ -323,7 +323,7 @@ $(document).ready(function () {
     $("#mc_embed_signup").find("form").ajaxChimp();
   });
 
-  $(".banner-area").backstretch(
+  $(".home-slider").backstretch(
     ["assets/img/bg1.jpg", "assets/img/bg2.jpg", "assets/img/bg3.jpg"],
     { duration: 4000 }
   );
