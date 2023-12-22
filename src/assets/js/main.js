@@ -324,7 +324,14 @@ $(document).ready(function () {
   });
 
   $(".home-slider").backstretch(
-    ["assets/img/bg1.jpg", "assets/img/bg2.jpg", "assets/img/bg3.jpg"],
+    [
+      "assets/img/bg1.jpg",
+      "assets/img/bg2.jpg",
+      "assets/img/bg3.jpg",
+      "assets/img/bg4.jpg",
+      "assets/img/bg5.jpg",
+      "assets/img/bg6.jpg",
+    ],
     { duration: 4000 }
   );
 });

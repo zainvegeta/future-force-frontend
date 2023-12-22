@@ -100,8 +100,12 @@ button:disabled {
   background-image: -ms-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
 }
 
+#header {
+  background: rgba(154, 154, 154, .3);
+}
+
 .home-slider .overlay-bg {
-  opacity: .5;
+  opacity: .2;
 }
 
 .banner-content .form-wrap {
