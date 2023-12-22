@@ -100,6 +100,16 @@ button:disabled {
   background-image: -ms-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
 }
 
+.banner-area .overlay-bg {
+  opacity: .2;
+}
+
+.banner-content .form-wrap {
+  background-color: rgba(154, 154, 154, .4);
+  border: 1px solid #9a9a9a;
+}
+
+
 .p1-gradient-color,
 .feat-txt h1 {
   background: -moz-linear-gradient(0deg, #97ca4c 0%, #628036 100%);
