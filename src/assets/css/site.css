@@ -41,7 +41,7 @@
 .testimonial-area .owl-dot.active {
   background: #97ca4c;
 }
-.sidebar .owl-dot.active{
+.sidebar .owl-dot.active {
   background: #97ca4c;
 }
 .footer-area .footer-nav li a:hover {
@@ -84,8 +84,7 @@ button:disabled {
   background: transparent;
 }
 
-.sidebar .owl-dot
-.p1-gradient-bg,
+.sidebar .owl-dot .p1-gradient-bg,
 .banner-area .overlay-bg,
 .sidebar .single-slidebar .cat-list li:hover,
 .callto-action-area,
@@ -100,19 +99,31 @@ button:disabled {
   background-image: -ms-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
 }
 
-#header {
-  background: rgba(154, 154, 154, .3);
+#mobile-nav ul .menu-item-active {
+  color: #769b3e;
+}
+
+.nav-menu ul li a:hover {
+  color: #769b3e;
+}
+
+.nav-menu ul {
+  opacity: 0.8;
 }
 
 .home-slider .overlay-bg {
-  opacity: .2;
+  background: linear-gradient(
+    0deg,
+    rgba(91, 91, 91, 0.1) 0%,
+    rgba(57, 57, 57, 0.2) 75%,
+    rgba(7, 7, 7, 0.9) 100%
+  );
 }
 
 .banner-content .form-wrap {
-  background-color: rgba(154, 154, 154, .5);
+  background-color: rgba(154, 154, 154, 0.5);
   border: 1px solid #9a9a9a;
 }
-
 
 .p1-gradient-color,
 .feat-txt h1 {
@@ -122,7 +133,6 @@ button:disabled {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 .btn:focus,
 .btn.focus {
@@ -164,8 +174,8 @@ button:disabled {
   color: #97ca4c;
 }
 
-
-.footer-text a, .footer-text i {
+.footer-text a,
+.footer-text i {
   color: #97ca4c;
 }
 .footer-area .primary-btn {
@@ -175,34 +185,34 @@ button:disabled {
   background-color: #769b3e;
 }
 .single-popular-post .btns {
-    background-color: #97ca4c;
-    color: #fff;
-    font-size: 12px;
-    position: absolute;
-    bottom: 22px;
-    font-weight: 400;
-    padding: 9px;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-  }
-  
-  .single-popular-post h6 {
-    padding: 10px 0;
-    color: #97ca4c;
-  }
+  background-color: #97ca4c;
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  bottom: 22px;
+  font-weight: 400;
+  padding: 9px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
 
-  .unordered-list li:before {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border: 3px solid #97ca4c;
-    background: #fff;
-    top: 4px;
-    left: 0;
-    border-radius: 50%;
+.single-popular-post h6 {
+  padding: 10px 0;
+  color: #97ca4c;
+}
+
+.unordered-list li:before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 3px solid #97ca4c;
+  background: #fff;
+  top: 4px;
+  left: 0;
+  border-radius: 50%;
 }
 
 .progress-table .sl {
@@ -228,7 +238,7 @@ button:disabled {
   font-weight: 600;
 }
 
-.p-dropdown{
+.p-dropdown {
   color: #495057;
   background: #f9f9ff;
   width: 100%;
@@ -237,23 +247,23 @@ button:disabled {
 .p-inputtext {
   font-family: var(--font-family);
   font-feature-settings: var(--font-feature-settings, normal);
-  font-size: 14px; 
+  font-size: 14px;
 }
 .p-button {
   color: #ffffff;
   background: #97ca4c;
   border: 1px solid #97ca4c;
 }
-.alert-msg{
+.alert-msg {
   font-weight: 400;
   margin-bottom: 10px;
 }
 
-.alert-msg{
+.alert-msg {
   font-weight: 400;
   margin-bottom: 10px;
 }
-input[type='radio']{
+input[type="radio"] {
   width: 25px;
   height: 25px;
   background: f9f9ff;
@@ -316,13 +326,25 @@ a:focus {
   border-bottom: 8px solid #fff;
 }
 
+.single-service {
+  background-image: -moz-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
+  background-image: -webkit-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
+  background-image: -ms-linear-gradient(0deg, #9a9a9a 0%, #454545 100%);
+}
+.single-service:hover {
+  background-image: -moz-linear-gradient(0deg, #97ca4c 0%, #769b3e 100%);
+  background-image: -webkit-linear-gradient(0deg, #97ca4c 0%, #769b3e 100%);
+  background-image: -ms-linear-gradient(0deg, #97ca4c 0%, #769b3e 100%);
+  cursor: pointer;
+}
+.single-service h4,
+.single-service p,
+.single-service .lnr {
+  color: #fff;
+}
+
 @media (min-width: 360px) {
   .banner-content {
     margin-top: -20px;
   }
 }
-
-
-
-
-

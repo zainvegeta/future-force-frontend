@@ -2,15 +2,19 @@
   <div class="container">
     <div class="row align-items-center justify-content-between d-flex">
       <div id="logo">
-        <a href="/"
-          ><img src="assets/img/ff-logo.png" alt="" title=""
-        /></a>
+        <a href="/"><img src="assets/img/ff-logo.png" alt="" title="" /></a>
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="/">Home</a></li>
-          <li><a href="about-us">About Us</a></li>
-          <li><a href="jobs">Jobs</a></li>
+          <li class="menu-has-children">
+            <a href="javascript:void(0)">About Us</a>
+            <ul>
+              <li><a href="company-profile">Company Profile</a></li>
+              <li><a href="search.html">Meet Our Team</a></li>
+            </ul>
+          </li>
+          <li><a href="jobs">Jobs</a></li>        
           <li><a href="services">Services</a></li>
           <li><a href="contact-us">Contact</a></li>
         </ul>
