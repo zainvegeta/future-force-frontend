@@ -111,7 +111,7 @@ button:disabled {
   opacity: 0.8;
 }
 
-.home-slider .overlay-bg {
+.banner-area .overlay-bg {
   background: linear-gradient(
     0deg,
     rgba(91, 91, 91, 0.1) 0%,
@@ -120,6 +120,34 @@ button:disabled {
   );
 }
 
+.bg1 {
+  background: url(/assets/img/bg1.jpg) center;
+  background-size: cover;
+}
+.bg2 {
+  background: url(/assets/img/bg2.jpg) center;
+  background-size: cover;
+}
+.bg3 {
+  background: url(/assets/img/bg3.jpg) center;
+  background-size: cover;
+}
+.bg4 {
+  background: url(/assets/img/bg4.jpg) center;
+  background-size: cover;
+}
+.bg5 {
+  background: url(/assets/img/bg5.jpg) center;
+  background-size: cover;
+}
+.bg6 {
+  background: url(/assets/img/bg6.jpg) center;
+  background-size: cover;
+}
+.bg7 {
+  background: url(/assets/img/bg7.jpg) center;
+  background-size: cover;
+}
 .banner-content .form-wrap {
   background-color: rgba(154, 154, 154, 0.5);
   border: 1px solid #9a9a9a;
@@ -343,8 +371,31 @@ a:focus {
   color: #fff;
 }
 
+.submit-right,
+.submit-left {
+  color: #fff;
+  padding: 20px 20px;
+}
+.submit-right p,
+.submit-left p {
+  padding: 5px 0;
+}
+.team-area {
+  padding: 30px 0;
+}
 @media (min-width: 360px) {
   .banner-content {
     margin-top: -20px;
+  }
+}
+@media (min-width: 1100px) {
+  .bg1,
+  .bg2,
+  .bg3,
+  .bg4,
+  .bg5,
+  .bg6,
+  .bg7 {
+    padding-top: 200px;
   }
 }

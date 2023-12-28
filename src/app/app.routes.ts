@@ -9,6 +9,7 @@ import { PostGrievanceComponent } from './post-grievance/post-grievance.componen
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { OurTeamComponent } from './our-team/our-team.component';
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
     { path: 'jobs', component: JobsComponent },
     { path: 'job-detail/:id', component: JobDetailComponent },
     { path: 'company-profile', component: CompanyProfileComponent },
+    { path: 'our-team', component: OurTeamComponent },
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'terms-conditions', component: TermsConditionsComponent },
     { path: 'services', component: ServicesComponent },
