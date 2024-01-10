@@ -386,6 +386,12 @@ a:focus {
 .footer-social a:hover {
   background-color: #97ca4c;
 }
+
+div.owl-carousel {
+  width: 1px;
+  min-width: 100%;
+  *width: 100%;
+}
 @media (min-width: 360px) {
   .banner-content {
     margin-top: -20px;
