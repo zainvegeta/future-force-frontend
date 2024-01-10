@@ -159,54 +159,6 @@ $(document).ready(function () {
     }
   });
 
-  $(".active-relatedjob-carusel").owlCarousel({
-    items: 1,
-    autoplay: true,
-    loop: true,
-    margin: 30,
-    dots: true,
-  });
-
-  $(".active-review-carusel").owlCarousel({
-    items: 2,
-    margin: 30,
-    autoplay: true,
-    loop: true,
-    dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      480: {
-        items: 1,
-      },
-      768: {
-        items: 2,
-      },
-    },
-  });
-
-  $(".active-popular-post-carusel").owlCarousel({
-    items: 2,
-    margin: 30,
-    autoplay: true,
-    loop: true,
-    dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      480: {
-        items: 1,
-      },
-      768: {
-        items: 1,
-      },
-      961: {
-        items: 2,
-      },
-    },
-  });
 
   //  Start Google map
 

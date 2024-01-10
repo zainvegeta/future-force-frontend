@@ -230,7 +230,18 @@
 
         <div class="single-slidebar">
           <h4>Top rated job posts</h4>
-          <div class="active-relatedjob-carusel">
+          <owl-carousel-o [options]="owlOptions">
+            <ng-template carouselSlide *ngFor="let featuredJob of featuredJobs">
+              <div class="single-rated">
+                <a href="job-detail/{{featuredJob.id}}"><h4>{{featuredJob.attributes.title}}</h4></a>
+                <h6>{{featuredJob.attributes.employer}}</h6>
+                <div [innerHtml]='featuredJob.attributes.description | sanitizeHtml'>
+                </div>
+                <a href="job-detail/{{featuredJob.id}}" class="btns text-uppercase">Details</a>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+          <!-- <div class="active-relatedjob-carusel">
             <div class="single-rated" *ngFor="let featuredJob of featuredJobs">
               <a href="job-detail/{{featuredJob.id}}"><h4>{{featuredJob.attributes.title}}</h4></a>
               <h6>{{featuredJob.attributes.employer}}</h6>
@@ -238,7 +249,7 @@
               </div>
               <a href="#" class="btns text-uppercase">Details</a>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="single-slidebar" *ngIf="categories?.length > 0">

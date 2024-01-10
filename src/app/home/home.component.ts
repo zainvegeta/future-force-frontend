@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { SanitizeHtmlPipe } from '../helpers';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import qs from 'qs';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 declare var $: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SanitizeHtmlPipe, FormsModule,ProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    SanitizeHtmlPipe,
+    FormsModule,
+    ProgressSpinnerModule,
+    CarouselModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -22,7 +30,15 @@ export class HomeComponent implements OnInit {
   jobPage: number = 1;
   jobPageSize = 5;
   featuredJobs: any = [];
-  loading:boolean=false;
+  loading: boolean = false;
+  owlOptions: OwlOptions = {
+    items: 1,
+    autoplay: true,
+    loop: true,
+    margin: 30,
+    dots: false,
+    navText: ['&#8249', '&#8250;'],
+  };
   constructor(private apiService: ApiService, private router: Router) {}
   ngOnInit(): void {
     this.apiService.getCategories().subscribe((response) => {
@@ -45,13 +61,13 @@ export class HomeComponent implements OnInit {
   }
 
   loadMoreJobs(): void {
-    this.loading=true;
+    this.loading = true;
     this.jobPage = this.jobPage + 1;
     this.apiService
       .getJobs(this.jobPage, this.jobPageSize)
       .subscribe((response) => {
         this.jobs = [...this.jobs, ...response.data];
-        this.loading=false;
+        this.loading = false;
       });
   }
 
@@ -64,6 +80,6 @@ export class HomeComponent implements OnInit {
       countryId: countryId,
       categoryId: categoryId,
     });
-    window.location.href=`/jobs?${queryString}`;
+    window.location.href = `/jobs?${queryString}`;
   }
 }
