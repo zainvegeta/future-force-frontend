@@ -331,6 +331,7 @@ $(document).ready(function () {
       "assets/img/bg4.jpg",
       "assets/img/bg5.jpg",
       "assets/img/bg6.jpg",
+      "assets/img/bg7.jpg",
     ],
     { duration: 4000 }
   );
