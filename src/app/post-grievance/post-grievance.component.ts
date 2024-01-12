@@ -9,21 +9,28 @@ import {
 import { ApiService } from '../api.service';
 import { MessageService } from 'primeng/api';
 import { Helpers } from '../helpers';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha';
 @Component({
   selector: 'app-post-grievance',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,ProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ProgressSpinnerModule,
+    RecaptchaV3Module,
+  ],
   templateUrl: './post-grievance.component.html',
   styleUrl: './post-grievance.component.css',
 })
 export class PostGrievanceComponent implements OnInit {
   grievanceForm: FormGroup;
   showFormErrors: boolean;
-  loading:boolean=false;
+  loading: boolean = false;
   constructor(
     private apiService: ApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) {}
 
   ngOnInit(): void {
@@ -63,15 +70,22 @@ export class PostGrievanceComponent implements OnInit {
   onClickSubmit(data: any) {
     Helpers.validateAllFormFields(this.grievanceForm);
     if (this.grievanceForm.valid) {
-      this.loading=true;
-      this.apiService.postGrievance(data).subscribe((response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Your suggestion / grievance was submitted successfully',
+      this.loading = true;
+      this.recaptchaV3Service.execute('postResume').subscribe((token) => {
+        this.apiService.validateRecaptcha(token).subscribe((response) => {
+          if (response.success == true) {
+            this.apiService.postGrievance(data).subscribe((response) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail:
+                  'Your suggestion / grievance was submitted successfully',
+              });
+              this.grievanceForm.reset();
+              this.loading = false;
+            });
+          }
         });
-        this.grievanceForm.reset();
-        this.loading=false;
       });
     } else {
       this.showFormErrors = true;

@@ -12,6 +12,7 @@ import { FileUpload, FileUploadHandlerEvent, FileUploadModule } from 'primeng/fi
 import { MessageService } from 'primeng/api';
 import { Helpers } from '../helpers';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha'
 @Component({
   selector: 'app-post-resume',
   standalone: true,
@@ -20,9 +21,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner'
     ReactiveFormsModule,
     DropdownModule,
     FileUploadModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    RecaptchaV3Module
   ],
-
   templateUrl: './post-resume.component.html',
   styleUrl: './post-resume.component.css',
 })
@@ -36,7 +37,8 @@ export class PostResumeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: FileUpload;
   constructor(
     private apiService: ApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) {}
 
   ngOnInit(): void {
@@ -85,22 +87,30 @@ export class PostResumeComponent implements OnInit {
       this.showFileRequired = true;
     } else {
       this.loading=true;
-      this.apiService.postResume(data).subscribe((response) => {
-        this.formData.append('refId', response.data.id);
-        this.formData.append('ref', 'api::resume.resume');
-        this.formData.append('field', 'file');
-        this.apiService.uploadFile(this.formData).subscribe((response) => {
-          this.resumeForm.reset();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Your resume was submitted successfully',
-          });
-          this.resumeForm.reset();
-          this.fileInput.clear();
-          this.loading=false;
-        });
+      this.recaptchaV3Service.execute('postResume').subscribe((token) => {
+        this.apiService.validateRecaptcha(token).subscribe((response)=>{
+          if(response.success==true){
+            this.apiService.postResume(data).subscribe((response) => {
+              this.formData.append('refId', response.data.id);
+              this.formData.append('ref', 'api::resume.resume');
+              this.formData.append('field', 'file');        
+              this.apiService.uploadFile(this.formData).subscribe((response) => {
+                this.resumeForm.reset();
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Success',
+                  detail: 'Your resume was submitted successfully',
+                });
+                this.resumeForm.reset();
+                this.fileInput.clear();
+                this.loading=false;
+              });
+            });
+          }
+        })
       });
+
+      
     }
   }
 

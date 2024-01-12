@@ -11,6 +11,8 @@ import {
 import { ApiInterceptor } from './api.interceptor';
 import { MessageService } from 'primeng/api';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(withFetch(),withInterceptors([ApiInterceptor])),
     provideAnimations(),
-    MessageService
+    MessageService,
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: environment.recaptcha.siteKey,
+    }
   ]
 };

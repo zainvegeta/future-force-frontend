@@ -10,22 +10,29 @@ import { ApiService } from '../api.service';
 import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { Helpers } from '../helpers';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,ProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ProgressSpinnerModule,
+    RecaptchaV3Module,
+  ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })
 export class ContactUsComponent implements OnInit {
   contactForm: FormGroup;
   showFormErrors: boolean;
-  loading:boolean=false;
+  loading: boolean = false;
   constructor(
     private apiService: ApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) {}
 
   ngOnInit(): void {
@@ -61,15 +68,21 @@ export class ContactUsComponent implements OnInit {
   onClickSubmit(data: any) {
     Helpers.validateAllFormFields(this.contactForm);
     if (this.contactForm.valid) {
-      this.loading=true;
-      this.apiService.postMessage(data).subscribe((response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Your message was send successfully',
+      this.loading = true;
+      this.recaptchaV3Service.execute('postResume').subscribe((token) => {
+        this.apiService.validateRecaptcha(token).subscribe((response) => {
+          if (response.success == true) {
+            this.apiService.postMessage(data).subscribe((response) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Your message was send successfully',
+              });
+              this.contactForm.reset();
+              this.loading = false;
+            });
+          }
         });
-        this.contactForm.reset();
-        this.loading=false;
       });
     } else {
       this.showFormErrors = true;

@@ -9,12 +9,11 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ApiService {
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService
+    private http: HttpClient
   ) {}
 
   postMessage(data: any): Observable<any> {
@@ -138,13 +137,16 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse) {
-    /* this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Ops something went wrong.Please try again later',
-    }); */
+  validateRecaptcha(token:string): Observable<any>{
+    const options = {
+      params: new HttpParams().set('token', token),
+    };
+    return this.http
+      .get(`api/recaptcha/validateToken`, options)
+      .pipe(catchError(this.handleError));
+  }
 
+  private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);
     } else {
