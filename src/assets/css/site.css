@@ -398,7 +398,9 @@ a:focus {
 .footer-social a:hover {
   background-color: #97ca4c;
 }
-
+.footer-bottom {
+  padding-top: 20px;
+}
 @media (min-width: 360px) {
   .banner-content {
     margin-top: -20px;

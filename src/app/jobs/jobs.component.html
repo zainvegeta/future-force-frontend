@@ -50,8 +50,8 @@
           </div>
         </form>
         <p class="text-white">
-          <span>Search by positions:</span> Designer, Engineer, Developer, 
-		  Welder, Nurse, Accountant
+          <span>Search by positions:</span> Designer, Engineer, Developer,
+          Welder, Nurse, Accountant
         </p>
       </div>
     </div>
@@ -62,42 +62,61 @@
 <!-- Start post Area -->
 <section class="post-area section-gap">
   <div class="container">
-    <div class="text-center" *ngIf=loading>
+    <div class="text-center" *ngIf="loading">
       <p-progressSpinner></p-progressSpinner>
     </div>
-    <div class="row justify-content-center d-flex" *ngIf=!loading>
+    <div class="row justify-content-center d-flex" *ngIf="!loading">
       <div class="col-lg-10 post-list">
-        <h5 class="mb-30">Pease click on "Details" to apply</h5>
-		<div class="progress-table-wrap">
-			<div class="progress-table">
-				<div class="table-head">
-					<div class="serial">#</div>
-					<div class="country">Countries</div>
-					<div class="visit">Position</div>
-					<div class="visit">Total Vacancies</div>
-					<div class="visit">Recruitments Made</div>
-					<div class="visit">Remaining Openings</div>
-					<div class="percentage">Action</div>
-				</div>
-				<div class="table-row" *ngFor="let job of jobs ; index as i">
-					<div class="serial">{{i+1}}</div>
-					<div class="country d-block">
-						<span *ngFor="let country of job.attributes.countries?.data">
-							{{country.attributes.name}}
-						</span>
-					</div>
-					<div class="visit">{{job.attributes.title}}</div>
-					<div class="visit text-center" style="display: block;">{{job.attributes.vacancies}}</div>
-					<div class="visit text-center" style="display: block;">{{job.attributes.vacancies_filled}}</div>
-					<div class="visit text-center" style="display: block;">
-						{{job.attributes.vacancies-job.attributes.vacancies_filled}}
-					</div>
-					<div class="percentage">
-						<a href="job-detail/{{job.id}}">Details</a>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div *ngIf="jobs.length>0">
+          <h5 class="mb-30">Pease click on "Details" to apply</h5>
+          <div class="progress-table-wrap">
+            <div class="progress-table">
+              <div class="table-head">
+                <div class="serial">#</div>
+                <div class="country">Countries</div>
+                <div class="visit">Position</div>
+                <div class="visit">Total Vacancies</div>
+                <div class="visit">Recruitments Made</div>
+                <div class="visit">Remaining Openings</div>
+                <div class="percentage">Action</div>
+              </div>
+              <div class="table-row" *ngFor="let job of jobs; index as i">
+                <div class="serial">{{ i + 1 }}</div>
+                <div class="country d-block">
+                  <span *ngFor="let country of job.attributes.countries?.data">
+                    {{ country.attributes.name }}
+                  </span>
+                </div>
+                <div class="visit">{{ job.attributes.title }}</div>
+                <div class="visit text-center" style="display: block">
+                  {{ job.attributes.vacancies }}
+                </div>
+                <div class="visit text-center" style="display: block">
+                  {{ job.attributes.vacancies_filled }}
+                </div>
+                <div class="visit text-center" style="display: block">
+                  {{
+                    job.attributes.vacancies - job.attributes.vacancies_filled
+                  }}
+                </div>
+                <div class="percentage">
+                  <a href="job-detail/{{ job.id }}">Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="jobs.length==0">
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">
+              <i class="fa fa-exclamation-triangle"></i>
+              Oops Sorry!
+            </h4>
+            <p>We couldn't find any search results</p>
+            <hr>
+            <p class="mb-0">Please try again using different words or removing filters.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
