@@ -401,6 +401,11 @@ a:focus {
 .footer-bottom {
   padding-top: 20px;
 }
+.about-content {
+  padding: 0px 0px;
+  margin-top: 250px;
+  text-align: center;
+}
 @media (min-width: 360px) {
   .banner-content {
     margin-top: -20px;
