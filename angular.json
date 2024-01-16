@@ -38,18 +38,7 @@
               "src/assets/css/main.css",
               "src/assets/css/site.css"        
             ],
-            "scripts": [
-              "src/assets/js/vendor/jquery-2.2.4.min.js",
-              "src/assets/js/vendor/bootstrap.min.js",
-              "src/assets/js/easing.min.js",
-              "src/assets/js/hoverIntent.js",
-              "src/assets/js/superfish.min.js",
-              "src/assets/js/jquery.backstretch.min.js",
-              "src/assets/js/jquery.sticky.js",
-              "src/assets/js/jquery.nice-select.min.js",
-              "src/assets/js/parallax.min.js",
-              "src/assets/js/main.js"
-            ],
+            "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
