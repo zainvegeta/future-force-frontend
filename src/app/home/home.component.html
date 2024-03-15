@@ -162,8 +162,8 @@
   <div class="container">
     <div class="row justify-content-center d-flex">
       <div class="col-lg-8 post-list">
-        <div class="single-post d-flex flex-row" *ngFor="let job of jobs">
-          <div class="thumb">
+        <div class="single-post row" *ngFor="let job of jobs">
+          <div class="thumb col-3">
             <ul class="tags">
               <li *ngFor="let category of job.attributes.categories?.data">
                 <a href="javascript:void(0)">
@@ -175,7 +175,7 @@
               </li>
             </ul>
           </div>
-          <div class="details">
+          <div class="details col-9">
             <div class="title d-flex flex-row justify-content-between">
               <div class="titles">
                 <a href="job-detail/{{ job.id }}">
@@ -240,16 +240,7 @@
                 <a href="job-detail/{{featuredJob.id}}" class="btns text-uppercase">Details</a>
               </div>
             </ng-template>
-          </owl-carousel-o>
-          <!-- <div class="active-relatedjob-carusel">
-            <div class="single-rated" *ngFor="let featuredJob of featuredJobs">
-              <a href="job-detail/{{featuredJob.id}}"><h4>{{featuredJob.attributes.title}}</h4></a>
-              <h6>{{featuredJob.attributes.employer}}</h6>
-              <div [innerHtml]='featuredJob.attributes.description | sanitizeHtml'>
-              </div>
-              <a href="#" class="btns text-uppercase">Details</a>
-            </div>
-          </div> -->
+          </owl-carousel-o>         
         </div>
 
         <div class="single-slidebar" *ngIf="categories?.length > 0">
