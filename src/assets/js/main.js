@@ -10,7 +10,7 @@ $(document).ready(function () {
   $(".fullscreen").css("height", window_height);
   $(".fitscreen").css("height", fitscreen);
 
-  if (document.getElementById("default-select")) {
+/*   if (document.getElementById("default-select")) {
     $("select").niceSelect();
   }
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
   if (document.getElementById("default-selects2")) {
     $("select").niceSelect();
-  }
+  } */
 
   // Initiate superfish on nav menu
   $(".nav-menu").superfish({
